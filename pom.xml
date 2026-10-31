@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.github.word1230.common</groupId>
+    <artifactId>common-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>common-parent</name>
+    <description>通用基础模块:统一响应、异常体系、全局异常处理与跨域自动配置</description>
+
+    <modules>
+        <module>common-core</module>
+        <module>common-web-starter</module>
+        <module>common-mybatis-starter</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <hutool.version>5.8.36</hutool.version>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <knife4j.version>4.5.0</knife4j.version>
+        <!-- knife4j 4.5.0 内置的 springdoc 与 Spring Boot 3.5 不兼容,这里强制升级到 2.8.x -->
+        <springdoc.version>2.8.6</springdoc.version>
+    </properties>
+
+    <!-- 本工程同时作为 BOM:业务项目在 dependencyManagement 中 import 此 pom,
+         即可统一收口 common 各模块及常用第三方依赖的版本 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.word1230.common</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.word1230.common</groupId>
+                <artifactId>common-web-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.word1230.common</groupId>
+                <artifactId>common-mybatis-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
